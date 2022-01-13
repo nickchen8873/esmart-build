@@ -1,0 +1,489 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad txp-txdoc">
+  <p-tabView (onChange)="showFileAreaControll($event)">
+    <p-tabPanel id="idInputContent" header="140" *ngIf="gInputContentShow">
+      <div class="main-info-content mCustomScrollbar form-style">
+        <div class="write-block clear-fix">
+          <h2 class="big-title">開戶基本資料建檔 (140)</h2>
+          <hr class="d-line mb15" />
+          <form [formGroup]="invalidForm">
+            <table class="w-table">
+              <tr>
+                <td colspan="2">
+                  <h3 class="preAsterisk">1.帳號</h3>
+                  <input
+                    id="0"
+                    type="text"
+                    formControlName="_ACNTNO"
+                    (keyup)="goKeyboardEvent($event)"
+                    cdkFocusInitial
+                    [disabled]="flowcontrollerLock"
+                    maxlength="11"
+                    pInputText
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="12">
+                  <h3 class="preAsterisk">2.戶名</h3>
+                  <input
+                    id="1"
+                    type="text"
+                    formControlName="_ACNTNA"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="200"
+                    pInputText
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <h3>3.身分證編號</h3>
+                  <input
+                    id="2"
+                    type="text"
+                    formControlName="_IDNO"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="10"
+                    pInputText
+                  />
+                  <small
+                    class="p-error"
+                    *ngIf="
+                      !invalidForm.controls._IDNO.pristine &&
+                      invalidForm.controls._IDNO.errors?.required
+                    "
+                    >請輸入使用者代號</small
+                  >
+                  <small
+                    class="p-error"
+                    *ngIf="
+                      !invalidForm.controls._IDNO.pristine &&
+                      invalidForm.controls._IDNO.hasError('maxlength')
+                    "
+                    >使用者代號為2碼</small
+                  >
+                  <small
+                    class="p-error"
+                    *ngIf="
+                      !invalidForm.controls._IDNO.pristine &&
+                      invalidForm.controls._IDNO.hasError('minlength')
+                    "
+                    >使用者代號為2碼</small
+                  >
+                </td>
+                <td colspan="2">
+                  <h3>4.營利事業編號</h3>
+                  <input
+                    id="3"
+                    type="text"
+                    formControlName="_BUSNO"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="8"
+                    pInputText
+                  />
+                </td>
+                <td colspan="2">
+                  <h3 class="preAsterisk">5.戶別</h3>
+                  <div class="p-inputgroup">
+                    <p-dropdown
+                      id="4"
+                      formControlName="_ACTYPE"
+                      [editable]="true"
+                      [options]="actypeOptions"
+                      optionLabel="name"
+                      (keyup)="goKeyboardEvent($event)"
+                      [disabled]="flowcontrollerLock"
+                      [style]="{ width: '65' }"
+                      maxlength="2"
+                    ></p-dropdown>
+                    <div class="txp-dropdown-text">
+                      <input
+                        id="5"
+                        type="text"
+                        formControlName="_ACTYPEX"
+                        (keyup)="goKeyboardEvent($event)"
+                        style="width: 100%"
+                        [disabled]="true"
+                        pInputText
+                      />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- 4 -->
+              <tr>
+                <td colspan="2">
+                  <h3>6.出生日期</h3>
+                  <input
+                    id="6"
+                    type="text"
+                    formControlName="_BORNDT"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="8"
+                    pInputText
+                  />
+                </td>
+                <td colspan="2">
+                  <h3>7.電話號碼1</h3>
+                  <input
+                    id="7"
+                    type="text"
+                    formControlName="_TELNO1"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="20"
+                    pInputText
+                  />
+                </td>
+
+                <td colspan="2">
+                  <h3>8.電話號碼2</h3>
+                  <input
+                    id="8"
+                    type="text"
+                    formControlName="_TELNO2"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="20"
+                    pInputText
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="12">
+                  <h3>9.戶籍地址</h3>
+                  <div class="p-inputgroup">
+                    <p-dropdown
+                      id="9"
+                      formControlName="_RESIADRH"
+                      [editable]="true"
+                      (keyup)="goKeyboardEvent($event)"
+                      [disabled]="flowcontrollerLock"
+                      maxlength="3"
+                      [style]="{ width: '100px' }"
+                    ></p-dropdown>
+                    <div class="txp-dropdown-text">
+                      <input
+                        id="10"
+                        type="text"
+                        formControlName="_RESIADRB"
+                        (keyup)="goKeyboardEvent($event)"
+                        [disabled]="flowcontrollerLock"
+                        maxlength="36"
+                        pInputText
+                      />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="12">
+                  <h3>10.通訊地址</h3>
+                  <div class="p-inputgroup">
+                    <p-dropdown
+                      id="11"
+                      formControlName="_MAILADRH"
+                      [editable]="true"
+                      (keyup)="goKeyboardEvent($event)"
+                      [disabled]="flowcontrollerLock"
+                      maxlength="3"
+                      [style]="{ width: '100px' }"
+                    ></p-dropdown>
+                    <div class="txp-dropdown-text">
+                      <input
+                        id="12"
+                        type="text"
+                        formControlName="_MAILADRB"
+                        (keyup)="goKeyboardEvent($event)"
+                        [disabled]="flowcontrollerLock"
+                        maxlength="36"
+                        pInputText
+                      />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <h3>11.通訊郵遞區號</h3>
+                  <input
+                    id="13"
+                    type="text"
+                    formControlName="_MZIP"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="3"
+                    pInputText
+                  />
+                </td>
+
+                <td colspan="2">
+                  <h3>12.法定代理人</h3>
+                  <input
+                    id="14"
+                    type="text"
+                    formControlName="_ATRNY"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="9"
+                    pInputText
+                  />
+                </td>
+                <td colspan="2">
+                  <h3>13.證金代號</h3>
+                  <input
+                    id="15"
+                    type="text"
+                    formControlName="_BANKCD"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="4"
+                    pInputText
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <h3>14.查詢密碼</h3>
+                  <input
+                    id="16"
+                    type="password"
+                    formControlName="_QPSWD"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="4"
+                    pInputText
+                  />
+                </td>
+
+                <td colspan="2">
+                  <h3>15.款項帳號</h3>
+                  <div class="p-inputgroup">
+                    <input
+                      id="17"
+                      type="text"
+                      formControlName="_DBRNO"
+                      (keyup)="goKeyboardEvent($event)"
+                      [disabled]="flowcontrollerLock"
+                      maxlength="3"
+                      style="width: 60pt"
+                      pInputText
+                    />
+
+                    <input
+                      id="18"
+                      type="text"
+                      formControlName="_DACTNO"
+                      (keyup)="goKeyboardEvent($event)"
+                      [disabled]="flowcontrollerLock"
+                      maxlength="14"
+                      pInputText
+                    />
+                  </div>
+                </td>
+                <td colspan="2">
+                  <h3>16.投信投顧代號</h3>
+                  <input
+                    id="19"
+                    type="text"
+                    formControlName="_DPICD"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="8"
+                    pInputText
+                  />
+                </td>
+              </tr>
+
+              <!-- 8 -->
+              <tr>
+                <td colspan="2">
+                  <h3>17.手機號碼</h3>
+                  <input
+                    id="20"
+                    type="text"
+                    formControlName="_MOBILE"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="10"
+                    pInputText
+                  />
+                </td>
+                <td colspan="2">
+                  <h3>18.電子信箱</h3>
+                  <input
+                    id="21"
+                    type="text"
+                    formControlName="_EMAIL"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="60"
+                    pInputText
+                  />
+                </td>
+
+                <td colspan="2">
+                  <h3 class="preAsterisk">19.開立手機存摺</h3>
+                  <p-dropdown
+                    id="22"
+                    formControlName="_MPSBK"
+                    [editable]="true"
+                    (keyup)="goKeyboardEvent($event)"
+                    [disabled]="flowcontrollerLock"
+                    maxlength="1"
+                    [style]="{ width: '100%' }"
+                  ></p-dropdown>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="12">
+                  <h3></h3>
+                  <span style="color: red"
+                    >*當開立手機存摺為"是"，手機號碼及電子信箱欄位必須輸入</span
+                  >
+                </td>
+              </tr>
+              <!-- 開立手機存摺 dropdwon show space-->
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+
+      <!-- <txp-submit
+  class="ui-grid-row"
+  [initTxType]="initTxType"
+  (onSubmit)="_goSubmit()"
+  (onCancel)="_goCancel()"
+  (onClose)="_onSubClose()"
+></txp-submit> -->
+      <div class="txp-goup" *ngIf="_isScroll()" (click)="_goTop()"></div>
+    </p-tabPanel>
+    <p-tabPanel id="_idHELP_" header="說明">
+      <!-- <txp-help txcd="ST140T" ver="2021-07-03 07:13:50"></txp-help> -->
+    </p-tabPanel>
+  </p-tabView>
+</div>
+<div *ngIf="gOutputContentShow">
+  <p-dialog
+    [(visible)]="gOutputContentShow"
+    [modal]="true"
+    [style]="{ width: '70vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="true"
+    [closable]="false"
+    modal="modal"
+  >
+    <ng-template pTemplate="header"> 140 交易結果(認證資料) </ng-template>
+    <txp-ucp-output
+      [noButtons]="false"
+      [formdata]="gOUTPUT_FORM"
+      (notify)="_onOutputFormClose($event)"
+    ></txp-ucp-output>
+  </p-dialog>
+</div>
+<txp-spinner *ngIf="gShowMsg" [label]="'資料處理中！'"></txp-spinner>
+
+<!-- <form [formGroup]="invalidForm">
+  <label>
+    <p>使用者名稱</p>
+    <input
+      id="0"
+      type="username"
+      formControlName="_name"
+      [(ngModel)]="_example.name"
+      (keyup)="goKeyboardEvent($event)"
+      value="1"
+      cdkFocusInitial
+      pInputText
+    />
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.name.pristine &&
+        invalidForm.controls.name.errors?.required
+      "
+      >請填寫姓名</small
+    >
+  </label>
+
+  <label>
+    <p>使用者電話</p>
+    <input
+      id="1"
+      type="text"
+      formControlName="_phone"
+      [(ngModel)]="_example.phone"
+      (keyup)="goKeyboardEvent($event)"
+      value="1"
+      cdkFocusRegionStart
+      pInputText
+    />
+
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.phone.pristine &&
+        invalidForm.controls.phone.errors?.required
+      "
+      >請輸入電話</small
+    >
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.phone.pristine &&
+        invalidForm.controls.phone.hasError('maxlength')
+      "
+      >電話長度不可大於 10 碼</small
+    >
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.phone.pristine &&
+        invalidForm.controls.phone.hasError('minlength')
+      "
+      >電話格式錯誤</small
+    >
+  </label>
+
+  <label>
+    <p>使用者密碼</p>
+    <input
+      id="2"
+      type="text"
+      formControlName="_password"
+      [(ngModel)]="_example.password"
+      (keyup)="goKeyboardEvent($event)"
+      value="3"
+      cdkFocusRegionEnd
+      pInputText
+    />
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.password.pristine &&
+        invalidForm.controls.password.hasError('required')
+      "
+      >請輸入密碼</small
+    >
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.password.pristine &&
+        invalidForm.controls.password.hasError('pattern')
+      "
+      >密碼格式錯誤：至少一個小寫字母，一個大寫字母，或是數字，密碼長度不得小於
+      8 個字元亦不可超過 16 字元</small
+    >
+  </label>
+</form>
+<button id="3" (keyup)="goKeyboardEvent($event)" (click)="confirm()">
+  確認
+</button> -->

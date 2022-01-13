@@ -1,0 +1,102 @@
+<div class="layout-wrapper">
+  <div
+    class="menu"
+    [ngClass]="{ 'layout-menu-dark': darkMenu }"
+    (click)="onMenuClick($event)"
+    id="@txpMenu"
+    *ngIf="gFullScreen == false"
+  >
+    <div class="logo">
+      <img src="assets/theme/images/logo.png" />
+    </div>
+    <app-menu [reset]="resetMenu"></app-menu>
+  </div>
+
+  <nav
+    class="sub-nav"
+    *ngIf="displaySubMenu && gFullScreen == false"
+    id="@txpSubnav"
+  >
+    <div class="sub-nav-head">
+      <a href="#" class="mobile-btn" (click)="hideSubMenu()">
+        <span><i></i><i></i><i></i></span>
+      </a>
+      <img src="assets/theme/images/logo_esmart.png" />
+      <h1>數位帳簿劃撥作業</h1>
+    </div>
+
+    <div id="user" *ngIf="displayTdccTodolistSub" style="text-align: center">
+      <h2 style="padding-left: 0px">
+        <img src="assets/theme/images/menu_group_over.png" />常用功能
+      </h2>
+
+      <div class="inner-nav-item current">自訂群組</div>
+      <div class="inner-sub-nav-div" style="display: block">
+        <ul class="inner-sub-nav-ul mCustomScrollbar">
+          <p-panelMenu [model]="userModel" [expanded]="true"></p-panelMenu>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="menu-ul"
+      id="txn"
+      *ngIf="displayTxnListSub"
+      style="text-align: center"
+    >
+      <h2 style="padding-left: 0px">
+        <img src="assets/theme/images/menu_tradelist_over.png" />交易清單
+      </h2>
+
+      <div class="inner-nav-item current">基本資料</div>
+      <div class="inner-sub-nav-div" style="display: block">
+        <ul class="inner-sub-nav-ul mCustomScrollbar">
+          <p-panelMenu [model]="txnModel" [expanded]="true"></p-panelMenu>
+        </ul>
+      </div>
+    </div>
+    <div id="flow" *ngIf="displayFlowListSub" style="text-align: center">
+      <h2 style="padding-left: 0px">
+        <img src="assets/theme/images/menu_worklist_over.png" />作業清單
+      </h2>
+      <div class="inner-sub-nav-div" style="display: block">
+        <ul class="inner-sub-nav-ul mCustomScrollbar">
+          <p-panelMenu [model]="flowModel" [expanded]="true"></p-panelMenu>
+        </ul>
+      </div>
+    </div>
+
+    <div id="setting" *ngIf="displayBbsSub" style="text-align: center">
+      <h2 style="padding-left: 0px">
+        <img src="assets/theme/images/menu_set_over.png" />訊息公告作業
+      </h2>
+
+      <div class="inner-nav-item current">訊息公告作業</div>
+      <div class="inner-sub-nav-div" style="display: block">
+        <ul class="inner-sub-nav-ul mCustomScrollbar">
+          <p-panelMenu [model]="bbsModel" [expanded]="true"></p-panelMenu>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section
+    [ngClass]="{
+      'right-wrap': !gFullScreen,
+      spread: !displaySubMenu
+    }"
+  >
+    <app-topbar [hidden]="gFullScreen"></app-topbar>
+    <div
+      id="main-wrap"
+      [ngClass]="{
+        'main-wrap': !gFullScreen,
+        'bg-login': gFullScreen,
+        'txp-basedoc': !gFullScreen
+      }"
+    >
+      <!-- (scroll)="onAppScroll($event)" -->
+      <div #placeholder1></div>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,52 @@
+<div class="top">
+  <div class="search-area">
+    <i></i>
+    <p-autoComplete
+      #searchbox
+      [(ngModel)]="selectedTransaction"
+      [suggestions]="filteredTransaction"
+      (completeMethod)="filterTransaction($event)"
+      (onSelect)="enterTx()"
+      [autoHighlight]="true"
+      field="name"
+      scrollHeight="430px"
+      itemSize="10"
+      [style]="{ 'padding-left': '20px', width: 'calc(100% - 40px)' }"
+      delay="0"
+      [autofocus]="true"
+      placeholder="請輸入功能代碼"
+    ></p-autoComplete>
+  </div>
+  <div class="login-info">
+    <ul>
+      <li>
+        <h6>參加人代號</h6>
+        <div>
+          <img src="assets/theme/images/header_icon_bank.png" />{{ _top.KINBR }}
+        </div>
+      </li>
+      <li>
+        <h6>工作站</h6>
+        <div>
+          <img src="assets/theme/images/header_icon_site.png" />{{ _top.KINWS }}
+        </div>
+      </li>
+      <li>
+        <h6>使用者</h6>
+        <div>
+          <img src="assets/theme/images/header_icon_member.png" />{{
+            _top.TLRNO
+          }}
+        </div>
+      </li>
+      <li class="login-time">
+        <h6>登入時間</h6>
+        <div>{{ today | date: "yyyy/MM/dd hh:mm:ss" }}</div>
+      </li>
+    </ul>
+    <div class="log-out" (click)="logoff()">
+      <a href="#">登出</a>
+    </div>
+  </div>
+  <!--//login-info-->
+</div>

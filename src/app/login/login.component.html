@@ -1,0 +1,250 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="login-area">
+    <div class="e-smart">
+      <img src="assets/theme/images/login_esmart.png" />
+    </div>
+    <section class="login-box">
+      <form [formGroup]="invalidForm">
+        <div class="login-key">
+          <h3>參加人代號</h3>
+          <input
+            id="0"
+            type="username"
+            formControlName="brno"
+            [(ngModel)]="LOGIN.brno"
+            (keyup)="goKeyboardEvent($event)"
+            value="1"
+            cdkFocusInitial
+            pInputText
+          />
+          <small
+            class="p-error"
+            *ngIf="
+              !invalidForm.controls.brno.pristine &&
+              invalidForm.controls.brno.errors?.required
+            "
+            >請輸入參加人代號</small
+          >
+        </div>
+        <div class="login-key">
+          <h3>使用者名稱</h3>
+          <input
+            id="1"
+            type="text"
+            formControlName="tlrno"
+            [(ngModel)]="LOGIN.tlrno"
+            (keyup)="goKeyboardEvent($event)"
+            value="1"
+            cdkFocusRegionStart
+            pInputText
+          />
+
+          <small
+            class="p-error"
+            *ngIf="
+              !invalidForm.controls.tlrno.pristine &&
+              invalidForm.controls.tlrno.errors?.required
+            "
+            >請輸入使用者代號</small
+          >
+          <small
+            class="p-error"
+            *ngIf="
+              !invalidForm.controls.tlrno.pristine &&
+              invalidForm.controls.tlrno.hasError('maxlength')
+            "
+            >使用者代號為2碼</small
+          >
+          <small
+            class="p-error"
+            *ngIf="
+              !invalidForm.controls.tlrno.pristine &&
+              invalidForm.controls.tlrno.hasError('minlength')
+            "
+            >使用者代號為2碼</small
+          >
+        </div>
+        <div class="login-key loginChangeDiv">
+          <h3>請輸入密碼</h3>
+          <input
+            pPassword
+            maxLength="16"
+            autocomplete="off"
+            placeholder="請輸入 SMART 密碼"
+            id="2"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            [(ngModel)]="LOGIN.password"
+            (keyup)="goKeyboardEvent($event)"
+            (blur)="fillPwdBlank()"
+            value="3"
+            cdkFocusRegionEnd
+          />
+          <small
+            class="p-error"
+            *ngIf="
+              !invalidForm.controls.password.pristine &&
+              invalidForm.controls.password.hasError('required')
+            "
+            >請輸入密碼</small
+          >
+          <small
+            class="p-error"
+            *ngIf="
+              !invalidForm.controls.password.pristine &&
+              invalidForm.controls.password.hasError('pattern')
+            "
+            >密碼格式錯誤：至少一個小寫字母，一個大寫字母，或是數字，密碼長度不得小於
+            8 個字元亦不可超過 16 字元</small
+          >
+          <i
+            class="btn-eye-slash"
+            (click)="showPassword = !showPassword"
+            *ngIf="!showPassword"
+          ></i>
+          <i
+            class="btn-eye-see"
+            (click)="showPassword = !showPassword"
+            *ngIf="showPassword"
+          ></i>
+        </div>
+
+        <div class="login-btn">
+          <button
+            pButton
+            type="button"
+            class="btn-enter"
+            id="_SUBMIT_"
+            (keyup)="goKeyboardEvent($event)"
+            (click)="confirm()"
+          >
+            登入
+          </button>
+
+          <button pButton type="button" id="_CANCEL_" class="btn-leave">
+            清 除
+          </button>
+        </div>
+        <br />
+        <!-- 環境名稱 -->
+        <!-- <div style="color: red; text-align: center">
+        {{ _top.ENV }}
+      </div> -->
+        <div class="login-logo">
+          <img src="assets/theme/images/login_logo.png" alt="" />
+        </div>
+      </form>
+    </section>
+    <!-- <div class="ui-grid-row">
+      前端網站版本號: {{ appVersion }} &nbsp;&nbsp; 後端服務版本號:
+      {{ apServerVersion }}
+    </div> -->
+  </div>
+
+  <!-- <div class="ui-grid-row">
+    <div class="ui-g-12">
+      <div class="ui-corner-all txp-msg" *ngIf="isTXPMSG()">
+        {{ gMSG }}
+      </div>
+    </div>
+  </div>
+  <txp-spinner *ngIf="gShowMsg"></txp-spinner> -->
+</div>
+
+<!-- ---------------------------------reactive form-------------------------------------- -->
+<!-- <form [formGroup]="invalidForm">
+  <label>
+    <p>參加人代號</p>
+    <input
+      id="0"
+      type="username"
+      formControlName="brno"
+      [(ngModel)]="LOGIN.brno"
+      (keyup)="goKeyboardEvent($event)"
+      value="1"
+      cdkFocusInitial
+      pInputText
+    />
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.brno.pristine &&
+        invalidForm.controls.brno.errors?.required
+      "
+      >請輸入參加人代號</small
+    >
+  </label>
+
+  <label>
+    <p>使用者代號</p>
+    <input
+      id="1"
+      type="text"
+      formControlName="tlrno"
+      [(ngModel)]="LOGIN.tlrno"
+      (keyup)="goKeyboardEvent($event)"
+      value="1"
+      cdkFocusRegionStart
+      pInputText
+    />
+
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.tlrno.pristine &&
+        invalidForm.controls.tlrno.errors?.required
+      "
+      >請輸入使用者代號</small
+    >
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.tlrno.pristine &&
+        invalidForm.controls.tlrno.hasError('maxlength')
+      "
+      >使用者代號為2碼</small
+    >
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.tlrno.pristine &&
+        invalidForm.controls.tlrno.hasError('minlength')
+      "
+      >使用者代號為2碼</small
+    >
+  </label>
+
+  <label>
+    <p>使用者密碼</p>
+    <input
+      id="2"
+      type="text"
+      formControlName="password"
+      [(ngModel)]="LOGIN.password"
+      (keyup)="goKeyboardEvent($event)"
+      value="3"
+      cdkFocusRegionEnd
+      pInputText
+    />
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.password.pristine &&
+        invalidForm.controls.password.hasError('required')
+      "
+      >請輸入密碼</small
+    >
+    <small
+      class="p-error"
+      *ngIf="
+        !invalidForm.controls.password.pristine &&
+        invalidForm.controls.password.hasError('pattern')
+      "
+      >密碼格式錯誤：至少一個小寫字母，一個大寫字母，或是數字，密碼長度不得小於
+      8 個字元亦不可超過 16 字元</small
+    >
+  </label>
+</form>
+<button id="3" (keyup)="goKeyboardEvent($event)" (click)="confirm()">
+  確認
+</button> -->
