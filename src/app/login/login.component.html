@@ -17,15 +17,15 @@
             cdkFocusInitial
             pInputText
           />
-          <small
-            class="p-error"
-            *ngIf="
-              !invalidForm.controls.brno.pristine &&
-              invalidForm.controls.brno.errors?.required
-            "
-            >請輸入參加人代號</small
-          >
         </div>
+        <small
+          class="p-error"
+          *ngIf="
+            !invalidForm.controls.brno.pristine &&
+            invalidForm.controls.brno.errors?.required
+          "
+          >請輸入參加人代號</small
+        >
         <div class="login-key">
           <h3>使用者名稱</h3>
           <input
@@ -38,32 +38,31 @@
             cdkFocusRegionStart
             pInputText
           />
-
-          <small
-            class="p-error"
-            *ngIf="
-              !invalidForm.controls.tlrno.pristine &&
-              invalidForm.controls.tlrno.errors?.required
-            "
-            >請輸入使用者代號</small
-          >
-          <small
-            class="p-error"
-            *ngIf="
-              !invalidForm.controls.tlrno.pristine &&
-              invalidForm.controls.tlrno.hasError('maxlength')
-            "
-            >使用者代號為2碼</small
-          >
-          <small
-            class="p-error"
-            *ngIf="
-              !invalidForm.controls.tlrno.pristine &&
-              invalidForm.controls.tlrno.hasError('minlength')
-            "
-            >使用者代號為2碼</small
-          >
         </div>
+        <small
+          class="p-error"
+          *ngIf="
+            !invalidForm.controls.tlrno.pristine &&
+            invalidForm.controls.tlrno.errors?.required
+          "
+          >請輸入使用者代號</small
+        >
+        <small
+          class="p-error"
+          *ngIf="
+            !invalidForm.controls.tlrno.pristine &&
+            invalidForm.controls.tlrno.hasError('maxlength')
+          "
+          >使用者代號為2碼</small
+        >
+        <small
+          class="p-error"
+          *ngIf="
+            !invalidForm.controls.tlrno.pristine &&
+            invalidForm.controls.tlrno.hasError('minlength')
+          "
+          >使用者代號為2碼</small
+        >
         <div class="login-key loginChangeDiv">
           <h3>請輸入密碼</h3>
           <input

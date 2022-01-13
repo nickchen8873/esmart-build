@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabViewModule } from 'primeng/tabview';
 import { TopbarComponent } from './topbar/topbar.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MenuComponent } from './menu/menu.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
 // import { KernelTopService } from './kernel-top.service';
 
 @NgModule({
@@ -22,6 +24,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     TodolistComponent,
     LoginComponent,
     TopbarComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     BrowserAnimationsModule,
     TabViewModule,
     AutoCompleteModule,
+    PanelMenuModule,
     // KernelTopService
   ],
   providers: [],

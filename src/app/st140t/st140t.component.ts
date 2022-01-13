@@ -83,29 +83,15 @@ export class St140tComponent implements OnInit {
   ngOnInit(): void {
     this.creatForm();
     this.invalidForm;
-    alert(this._top.KINBR + this._top.KINWS + this._top.TLRNO);
+    // this.ST140T._MPSBK = this._top.KINBR + this._top.KINWS + this._top.TLRNO;
   }
 
   //*建立表單
   creatForm() {
     this.invalidForm = this.formBuilder.group({
-      _ACNTNO: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.maxLength(2),
-          Validators.minLength(2),
-        ]),
-      ],
+      _ACNTNO: ['', Validators.required],
       _ACNTNA: ['', Validators.required],
-      _IDNO: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.maxLength(2),
-          Validators.minLength(2),
-        ]),
-      ],
+      _IDNO: ['', Validators.required],
       _BUSNO: ['', Validators.required],
       _ACTYPE: ['', Validators.required],
       _ACTYPEX: ['', Validators.required],
@@ -116,7 +102,7 @@ export class St140tComponent implements OnInit {
       _RESIADRB: ['', Validators.required],
       _MAILADRH: ['', Validators.required],
       _MAILADRB: ['', Validators.required],
-      _MZIP: ['', Validators.required],
+      _MZIP: ['', Validators.minLength(3)],
       _ATRNY: ['', Validators.required],
       _BANKCD: ['', Validators.required],
       _QPSWD: ['', Validators.required],
@@ -124,57 +110,13 @@ export class St140tComponent implements OnInit {
       _DACTNO: ['', Validators.required],
       _DPICD: ['', Validators.required],
       _MOBILE: ['', Validators.required],
-      _EMAIL: ['', Validators.required],
+      _EMAIL: ['', Validators.email],
       _MPSBK: ['', Validators.required],
-
-      // name: ['', Validators.required],
-      // phone: [
-      //   '',
-      //   Validators.compose([
-      //     Validators.required,
-      //     Validators.maxLength(10),
-      //     Validators.minLength(10),
-      //   ]),
-      // ],
-      // password: [
-      //   '',
-      //   Validators.compose([
-      //     Validators.required,
-      //     Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}'),
-      //   ]),
-      // ],
     });
   }
 
   confirm() {
-    // this.ST140T.phone = this.ST140T.phone;
-
-    // var sTimText = {};
-    // const Header = {};
-    // Header['brno'] = this.ST140T.name;
-    // Header['tlrno'] = this.ST140T.phone;
-    // Header['password'] = this.ST140T.password;
-    // sTimText['Header'] = Header;
-    // sTimText['Basic'] = Header;
-    // sTimText['Text'] = Header;
-
-    // this.postJsonDao(JSON.stringify(sTimText)).subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //   },
-
-    //   (error) => {},
-
-    //   () => {}
-    // );
-
-    // if (this.invalidForm.invalid) {
-    //   alert('表單漏填囉!');
-    // } else {
-    //   alert('驗證成功');
-    // }
-
-    this.router.navigate(['todolist']);
+    alert('發送140交易');
   }
 
   goKeyboardEvent(evt) {
@@ -184,15 +126,15 @@ export class St140tComponent implements OnInit {
       let formLength: number;
 
       formLength = evt.srcElement.form.length;
-      currElIndex = Number(evt.srcElement.id);
+      currElIndex = Number(evt.currentTarget.id);
 
-      if (currElIndex == formLength) {
+      if (currElIndex == 22) {
         nextEl = document.getElementById('0');
         nextEl.focus();
       } else {
         nextEl = document.getElementById(String(currElIndex + 1));
         if (nextEl.nodeName == 'P-DROPDOWN') {
-          nextEl.click();
+          nextEl.childNodes[0].childNodes[3].focus();
         } else {
           nextEl.focus();
         }

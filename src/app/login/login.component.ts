@@ -9,6 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { KernelTopService } from '../kernel-top.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private elementRef: ElementRef,
     public transport: HttpClient,
     private router: Router,
-    public _top: KernelTopService
+    public _top: KernelTopService,
+    public app: AppComponent
   ) {}
 
   formName = new FormControl('');
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
   showPassword = false;
 
   ngOnInit(): void {
+    this.app.gFullScreen = true;
     this.creatForm();
     this.invalidForm;
   }
@@ -58,42 +61,15 @@ export class LoginComponent implements OnInit {
   }
 
   confirm() {
-    this.LOGIN.tlrno = this.LOGIN.tlrno;
-
-    var sTimText = {};
-
-    const Header = {};
-
-    Header['brno'] = this.LOGIN.brno;
-
-    Header['tlrno'] = this.LOGIN.tlrno;
-
-    Header['password'] = this.LOGIN.password;
-
-    sTimText['Header'] = Header;
-
-    sTimText['Basic'] = Header;
-
-    sTimText['Text'] = Header;
-
-    // this.postJsonDao(JSON.stringify(sTimText)).subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //   },
-
-    //   (error) => {},
-
-    //   () => {}
-    // );
-
     if (this.invalidForm.invalid) {
       alert('表單資料格式有誤');
     } else {
-      alert('驗證成功');
+      alert('登入成功');
+      this.app.gFullScreen = false;
+
       this._top.KINBR = this.LOGIN.brno;
       this._top.KINWS = '01';
       this._top.TLRNO = this.LOGIN.tlrno;
-
       this.router.navigate(['todolist']);
     }
   }

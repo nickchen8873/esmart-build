@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { KernelTopService } from '../kernel-top.service';
 
 @Component({
   selector: 'app-todolist',
@@ -7,11 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./todolist.component.scss'],
 })
 export class TodolistComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, public _top: KernelTopService) {}
 
   ngOnInit(): void {}
 
-  goto140() {
-    this.router.navigate(['st140t']);
-  }
+  // goto140() {
+  //   this.router.navigate(['st140t']);
+  // }
 }

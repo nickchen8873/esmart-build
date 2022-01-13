@@ -1,0 +1,103 @@
+<ul class="menu-ul">
+  <li>
+    <a
+      [ngClass]="{
+        active: gHomeActive
+      }"
+      (click)="showSubMenu('TdccTodolist')"
+    >
+      <i class="icon-home"></i>
+      <div>首頁</div>
+    </a>
+  </li>
+  <li>
+    <a
+      [ngClass]="{
+        active: gTxnActive
+      }"
+      (click)="showSubMenu('tradelist')"
+    >
+      <i class="icon-tradelist"></i>
+      <div>交易清單</div>
+    </a>
+  </li>
+  <li>
+    <a
+      [ngClass]="{
+        active: gFlowActive
+      }"
+      (click)="showSubMenu('worklist')"
+    >
+      <i class="icon-worklist"></i>
+      <div>作業清單</div>
+    </a>
+  </li>
+  <li>
+    <a
+      [ngClass]="{
+        active: gCaseSActive
+      }"
+      (click)="menuRouter('casesearching'); showSubMenu('casesearching')"
+    >
+      <i class="icon-search"></i>
+      <div>作業查詢</div>
+    </a>
+  </li>
+  <li>
+    <a
+      [ngClass]="{
+        active: gTradeSActive
+      }"
+      (click)="menuRouter('ST033'); showSubMenu('ST033')"
+    >
+      <i class="icon-tradesearch"></i>
+      <div>交易查詢</div>
+    </a>
+  </li>
+  <li>
+    <a
+      [ngClass]="{
+        active: gCerlogActive
+      }"
+      (click)="menuRouter('certlog'); showSubMenu('cerlog')"
+    >
+      <i class="icon-tradesearch"></i>
+      <div>憑證查詢</div>
+    </a>
+  </li>
+  <li>
+    <a
+      [ngClass]="{
+        active: gGroupActive
+      }"
+      (click)="menuRouter('Cr061'); showSubMenu('group')"
+    >
+      <i class="icon-group"></i>
+      <div>自訂群組</div>
+    </a>
+  </li>
+  <!-- 1000 -->
+  <li *ngIf="_top.KINBR == '1000'">
+    <a
+      [ngClass]="{
+        active: gBbsActive
+      }"
+      (click)="menuRouter('CR100'); showSubMenu('bbs')"
+    >
+      <i class="icon-set"></i>
+      <div>公告訊息</div>
+    </a>
+  </li>
+  <!-- TSCD -->
+  <li *ngIf="_top.KINBR == 'TSCD'">
+    <a
+      [ngClass]="{
+        active: gStationActive
+      }"
+      (click)="menuRouter('CR202'); showSubMenu('station')"
+    >
+      <i class="icon-group"></i>
+      <div>工作站管理</div>
+    </a>
+  </li>
+</ul>
