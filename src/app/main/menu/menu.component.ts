@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppComponent } from '../app.component';
-import { KernelTopService } from '../kernel-top.service';
+import { AppComponent } from '../../app.component';
+import { KernelTopService } from '../../shared/service/kernel-top.service';
 
 @Component({
   selector: 'app-menu',

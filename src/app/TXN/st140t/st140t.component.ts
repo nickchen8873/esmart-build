@@ -15,7 +15,8 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { KernelTopService } from '../kernel-top.service';
+// import { KernelTopService } from '../../shared/service/kernel-top.service';
+import { KernelTopService } from 'src/app/shared/service/kernel-top.service';
 
 @Component({
   selector: 'app-st140t',
@@ -30,15 +31,7 @@ export class St140tComponent implements OnInit {
     public transport: HttpClient,
     private router: Router,
     public _top: KernelTopService
-  ) {
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' },
-    ];
-  }
+  ) {}
 
   formName = new FormControl('');
   invalidForm!: FormGroup;
@@ -49,10 +42,9 @@ export class St140tComponent implements OnInit {
   gShowMsg: Boolean = false;
   gInputContentShow: Boolean = true;
 
-  actypeOptions: option[] = [{ name: '30' }, { name: '31' }];
-
-  cities: City[];
-  selectedCity: City;
+  ACTYPE: option[] = [{ name: '30' }, { name: '31' }];
+  ADDR_AREA: AREA[];
+  selectedCity: AREA;
   // 欄位資料變數
   ST140T = {
     _ACNTNO: '', // 1.保管機構帳號
@@ -85,7 +77,17 @@ export class St140tComponent implements OnInit {
     this.invalidForm;
     // this.ST140T._MPSBK = this._top.KINBR + this._top.KINWS + this._top.TLRNO;
   }
-
+  ngAfterViewInit() {
+    try {
+      let splitArea = this._top.appJSON.AREA.split(';');
+      this.ADDR_AREA = [];
+      splitArea.forEach((element) => {
+        this.ADDR_AREA.push({ name: element });
+      });
+    } catch (error) {
+      console.log('error by this._top.appJSON');
+    }
+  }
   //*建立表單
   creatForm() {
     this.invalidForm = this.formBuilder.group({
@@ -189,7 +191,6 @@ interface option {
   name: string;
 }
 
-interface City {
+interface AREA {
   name: string;
-  code: string;
 }

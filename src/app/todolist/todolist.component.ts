@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { KernelTopService } from '../kernel-top.service';
+import { KernelTopService } from '../shared/service/kernel-top.service';
 
 @Component({
   selector: 'app-todolist',

@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "d45208c6-0147-4a2b-9635-74fb2164ef75"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -28,16 +31,16 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/theme/primeng.css",
+              "src/assets/theme/theme-base.css",
+              "src/assets/theme/tdcc-layout.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/fullcalendar/dist/fullcalendar.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "node_modules/primeflex/primeflex.css",
               "node_modules/quill/dist/quill.snow.css",
               "node_modules/quill/dist/quill.core.css",
-              "src/assets/layout/css/layout-base.css",
-              "src/assets/theme/primeng.css",
-              "src/assets/theme/theme-base.css",
-              "src/assets/theme/tdcc-layout.css"
+              "src/assets/layout/css/layout-base.css"
             ],
             "scripts": []
           },

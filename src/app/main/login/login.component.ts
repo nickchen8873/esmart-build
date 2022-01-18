@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { KernelTopService } from '../kernel-top.service';
-import { AppComponent } from '../app.component';
+import { KernelTopService } from '../../shared/service/kernel-top.service';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-login',
